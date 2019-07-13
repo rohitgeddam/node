@@ -11,7 +11,7 @@ const Comment = require("./models/comment");
 app.set("view engine","ejs");
 //variable
 app.use(bodyParser.urlencoded({extended:true}));
-
+app.use(express.static(__dirname + "/public"));
 //connect to mongoose.
 // mongoose.connect("mongodb://localhost/yelp_camp");//old method
 mongoose.connect("mongodb://localhost:27017/yelp_camp",{useNewUrlParser:true});//new method
