@@ -1,0 +1,29 @@
+<!-- <h1>THIS IS NEW COMMENTS PAGE</h1> -->
+
+
+<% include ../partials/header.ejs%>
+
+
+<div class="container">
+	<div class="row">
+		<h1 style="text-align: center">Edit</h1>
+
+		<div style="width:30%;margin:50px auto;">
+			<form action="/campgrounds/<%=campground._id%>/comments/<%=comment.id%>?_method=put" method="POST">
+	
+			<div class="form-group">
+
+			<textarea name="comment[text]" rows="8" cols="80" placeholder="comment here" class="form-control"><%=comment.text%></textarea>
+			</div>
+			<div class="form-group">
+			<input type="submit" name="" class="btn btn-primary btn-lg btn-block">
+			</div>
+			<a href="/campgrounds" class="btn btn-danger btn-lg btn-block">Go Back</a>
+			</div>
+
+		</div>
+			</form>
+
+</div>
+
+<%include ../partials/footer.ejs%>
