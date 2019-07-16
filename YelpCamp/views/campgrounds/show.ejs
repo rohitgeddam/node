@@ -1,5 +1,9 @@
 <% include ../partials/header.ejs%>
-
+<!-- <% if(currentUser){ %>
+    <%= currentUser.username %>
+<% }else {%>
+    <h1>no USER</h1> -->
+<!-- <%}%> -->
 <div class="container">
     <div class="row">
         <div class = "col-md-3">
@@ -16,7 +20,15 @@
                     <div class="caption-full">
                             <h4 class="pull-right">$9/night</h4>
                             <h4> <a href=""><%= campground.name%></a></h4> 
+                            <em>Created By - <%= campground.author.username%></em>
                             <p><%=campground.description%></p>
+
+                        
+                            <% if(currentUser && campground.author.id.equals(currentUser.id)){ %>
+                            <a class="btn btn-warning btn-xs" href="/campgrounds/<%= campground.id%>/edit">Edit</a>
+                            <a class="btn btn-danger btn-xs" href="/campgrounds/<%= campground.id%>/delete">Delete</a>
+                            <% } %>
+
                     </div>
                     <hr>
                </div>
@@ -29,11 +41,23 @@
                     <% campground.comments.forEach(function(comment){ %>
                         <div class="row">
                             <div class="col-md-12">
-                                   <strong> <%=comment.author%></strong>
-                                    <span class="pull-right">
+                                   <strong> <%=comment.author.username%></strong> - <%=comment.text%>
+                                   <% if(currentUser && comment.author.id.equals(currentUser.id)){ %>
+                                    <br>
+                                    <a class="btn btn-warning btn-xs"href="/campgrounds/<%=campground.id%>/comments/<%=comment.id%>/edit">Edit</a>
+                                    <form id="commentDelete" action="/campgrounds/<%=campground.id%>/comments/<%=comment.id%>?_method=delete" method="post">
+                                       <button class="btn btn-danger btn-xs ">Delete</button>
+                                    </form>
+                                   
+                                  
+                                   <% } %> 
+                                   <span class="pull-right">
                                         10 days ago 
                                     </span> 
-                                   - <%=comment.text%>
+                                  
+                                  
+                                   
+                                   <hr>
                             </div>
                         </div>
                         

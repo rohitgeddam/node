@@ -8,3 +8,7 @@
 .thumbnail .caption-full{
     padding:9px;
 }
+
+#commentDelete{
+    display:inline;
+}
